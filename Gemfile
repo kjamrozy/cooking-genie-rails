@@ -26,6 +26,7 @@ end
 
 group :test do
   gem 'mocha'
+  gem 'simplecov'
 end
 
 group :development, :test do
