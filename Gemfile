@@ -24,6 +24,10 @@ group :development do
   gem 'guard-livereload'
 end
 
+group :test do
+  gem 'mocha'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
