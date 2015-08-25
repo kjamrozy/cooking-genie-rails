@@ -1,2 +1,27 @@
-%h1 Users#new
-%p Find me in app/views/users/new.html.haml
+= provide(:title, 'Sign up')
+.row
+  .col-md-offset-2.col-md-8
+    %h1.text-center.jumbotron Sign up
+.col-md-2
+  = render 'shared/errors'
+.col-md-8
+  .well
+    = form_for @user do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :surname
+        = f.text_field :surname, class: 'form-control'
+      .form-group
+        = f.label :email
+        = f.email_field :email, class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: 'form-control'
+      = f.submit 'Create an account', class: 'form-control btn-primary'
+
+  

@@ -1,0 +1,9 @@
+- if @user.errors.full_messages.any?
+  .panel.panel-danger
+    .panel-heading
+      %p Errors
+    .panel-body.validation-errors
+      %ul
+        - if @user.errors.full_messages.any?
+          - @user.errors.full_messages.each do |msg|
+            %li= msg

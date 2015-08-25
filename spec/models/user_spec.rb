@@ -63,8 +63,8 @@ RSpec.describe User, type: :model do
   end
 
   it 'should be invalid with two equal emails' do
-    create(:user)
-    @user = User.new(attributes_for(:user))
+    create(:user, email: 'same@email.com')
+    @user = User.new(attributes_for(:user, email: 'same@email.com'))
     expect(@user.valid?).to be_falsy
   end
 

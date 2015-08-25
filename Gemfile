@@ -17,6 +17,7 @@ gem 'rspec-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'capybara'
 gem 'email_validator'
+gem 'bootstrap-sass', '~> 3.3.5'
 
 group :development do
   gem 'guard'
@@ -25,6 +26,7 @@ group :development do
 end
 
 group :test do
+  gem 'selenium-webdriver'
   gem 'mocha'
   gem 'simplecov'
 end
