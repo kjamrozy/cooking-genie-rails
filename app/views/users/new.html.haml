@@ -3,7 +3,7 @@
   .col-md-offset-2.col-md-8
     %h1.text-center.jumbotron Sign up
 .col-md-2
-  = render 'shared/errors'
+  = render 'shared/errors', errors: @user.errors.full_messages
 .col-md-8
   .well
     = form_for @user do |f|
@@ -23,5 +23,8 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, class: 'form-control'
       = f.submit 'Create an account', class: 'form-control btn-primary'
+    %p
+      Already have an account?
+      = link_to 'Sign in!', signin_path
 
   

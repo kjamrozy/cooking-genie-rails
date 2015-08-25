@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  include SessionsHelper
   render_views
+  # log in user
+  before do
+    user = create(:user)
+    log_in(user)
+  end
   describe 'GET #index' do
     before { get :index }
     it 'assigns @users' do
@@ -68,6 +74,10 @@ RSpec.describe UsersController, type: :controller do
       it 'inserts new record to the database' do
         expect { get :create, user: attributes_for(:user) }
           .to change { User.count }.by(1)
+      end
+
+      it 'signs user in' do
+        expect(logged_in?).to be_truthy
       end
 
       it 'redirects to user page upon creation' do

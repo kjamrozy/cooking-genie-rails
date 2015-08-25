@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'factory_girl'
 require 'capybara/rspec'
+require 'rack_session_access/capybara'
 require 'simplecov'
 SimpleCov.start
 

@@ -33,4 +33,9 @@ feature 'Sign up' do
       .to have_content('Password is too short (minimum is 8 characters)')
     expect(page).not_to have_content('Account was successfully created!')
   end
+  scenario 'going from sign up to sign in page' do
+    visit signup_path
+    click_link 'Sign in!'
+    expect(current_path).to eq(signin_path)
+  end
 end

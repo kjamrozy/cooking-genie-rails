@@ -41,8 +41,8 @@ RSpec.describe SessionsController, type: :controller do
         expect(response).to render_template('layouts/before_auth')
       end
 
-      it 'sets errors flash' do
-        expect(flash[:errors]).to eq ['Invalid email/password']
+      it 'sets @errors' do
+        expect(assigns[:errors]).to eq ['Invalid email/password']
       end
     end
   end

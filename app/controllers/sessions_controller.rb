@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user.nil?
-      flash.now[:errors] = ['Invalid email/password']
+      puts 'mark'
+      @errors = ['Invalid email/password']
       render :new, layout: 'before_auth'
     else
       log_in(@user)

@@ -18,6 +18,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'capybara'
 gem 'email_validator'
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'rack_session_access'
 
 group :development do
   gem 'guard'
