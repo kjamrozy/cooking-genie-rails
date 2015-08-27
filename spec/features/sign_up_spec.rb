@@ -11,6 +11,7 @@ feature 'Sign up' do
       fill_in 'Password confirmation', with: 'secret_password'
       click_button 'Create an account'
     end.to change { User.count }.by(1)
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('Account was successfully created!')
   end
 

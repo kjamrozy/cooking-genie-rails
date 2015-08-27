@@ -3,7 +3,7 @@
   .col-md-offset-2.col-md-8
     %h1.text-center.jumbotron Sign in
 .col-md-2
-  = render 'shared/errors', errors: @errors
+  = render 'shared/errors', flash: flash
 .col-md-8
   .well
     = form_tag(signin_path) do

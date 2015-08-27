@@ -1,5 +1,6 @@
 # UsersController
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
   def index
     @users = User.all
   end
@@ -18,8 +19,9 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Account was successfully created!'
       log_in(@user)
-      redirect_to @user
+      redirect_to(root_path)
     else
+      flash[:errors] = @user.errors.full_messages
       render 'new', layout: 'before_auth'
     end
   end

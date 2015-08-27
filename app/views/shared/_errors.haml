@@ -1,8 +1,8 @@
-- if errors.present?
+- if flash[:errors].present?
   .panel.panel-danger
     .panel-heading
       %p Errors
     .panel-body.validation-errors
       %ul
-        - errors.each do |msg|
+        - flash[:errors].each do |msg|
           %li= msg

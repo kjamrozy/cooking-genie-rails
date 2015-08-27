@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login
   def new
     render 'new', layout: 'before_auth'
   end
@@ -6,11 +7,11 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.nil?
       puts 'mark'
-      @errors = ['Invalid email/password']
+      flash[:errors] = ['Invalid email/password']
       render :new, layout: 'before_auth'
     else
       log_in(@user)
-      redirect_to @user
+      redirect_to(root_path)
     end
   end
 

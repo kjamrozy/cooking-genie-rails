@@ -22,6 +22,9 @@ require 'rack_session_access/capybara'
 require 'simplecov'
 SimpleCov.start
 
+require 'shared_examples/authorized_route'
+require 'shared_examples/accessible_route'
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

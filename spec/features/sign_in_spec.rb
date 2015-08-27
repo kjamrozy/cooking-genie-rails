@@ -8,7 +8,7 @@ feature 'Sign in' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: attributes_for(:user)[:password]
     click_button 'Sign in'
-    expect(current_path).to eq(user_path(user.id))
+    expect(current_path).to eq(root_path)
     expect(page.get_rack_session['user_id']).to eq(user.id)
   end
 
