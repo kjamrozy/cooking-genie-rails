@@ -14,9 +14,9 @@
             = yield(:title)
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li
-              %a(href='#') Home
-            %li
+            %li#home{class: ("active" if flash[:active]=='home')}
+              %a(href="#{root_path}") Home
+            %li#products{class: ("active" if flash[:active]=='products')}
               %a(href='#') Products
           = form_tag '#', class: 'navbar-form navbar-left' do
             .form-group
@@ -24,14 +24,14 @@
             = submit_tag 'Submit', class: 'btn btn-default'
           %ul.nav.navbar-nav
             - if current_user.admin
-              %li
+              %li#manage{class: ("active" if flash[:active]=='manage')}
                 %a(href = "/manage") Manage
-            %li
-              %a(href="/about") About
+            %li#about{class: ("active" if flash[:active]=='about')}
+              %a(href="#{about_path}") About
           %ul.nav.navbar-nav.navbar-right
-            %li
-              %a(href='#') Account
-            %li
+            %li#account{class: ("active" if flash[:active]=='account')}
+              %a(href="#{edit_user_path(current_user)}") Account
+            %li#signout
               %a.glyphicon.glyphicon-log-out(href="#{signout_path}")
           %p.navbar-text.navbar-right= current_user.name + " " + current_user.surname
           %img.navbar-right.navbar-brand(src="http://gravatar.com/avatar/abc")

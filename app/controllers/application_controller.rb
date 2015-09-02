@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    flash[:errors] = ['Firstly you should sign in!']
-    redirect_to(signin_path) unless logged_in?
+    unless logged_in?
+      flash[:errors] = ['Firstly you should sign in!']
+      redirect_to(signin_path)
+    end
   end
 end

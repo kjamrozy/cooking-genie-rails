@@ -32,8 +32,13 @@ class UsersController < ApplicationController
 
   def update
     set_user
-    @user.update_attributes(user_params)
-    redirect_to @user
+    if @user.authenticate(params[:user][:current_password])
+      @user.update_attributes(user_params)
+      flash[:errors] = @user.errors.full_messages
+    else
+      flash[:errors] = ['Invalid current password!']
+    end
+    redirect_to edit_user_path(@user)
   end
 
   def destroy

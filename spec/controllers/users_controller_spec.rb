@@ -109,15 +109,35 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'GET #update' do
       let(:user) { create(:user) }
-      before do
-        put :update, id: user.id, user: attributes_for(:user, name: 'Richard')
-      end
-      it 'updates user data' do
-        expect(user.reload.name).to eq('Richard')
+      context 'with valid current_password' do
+        before do
+          user_attrs = attributes_for(:user, name: 'Richard')
+          user_attrs[:current_password] = attributes_for(:user)[:password]
+          put :update, id: user.id, user: user_attrs
+        end
+        it 'updates user data' do
+          expect(user.reload.name).to eq('Richard')
+        end
       end
 
-      it 'redirects to the user page' do
-        expect(response).to redirect_to("/users/#{user.id}")
+      context 'with invalid current_password' do
+        before do
+          user_attrs = attributes_for(:user, name: 'Richard')
+          user_attrs[:current_password] = user_attrs[:password] + '_invalid'
+          put :update, id: user.id, user: user_attrs
+        end
+        it 'fails to update user' do
+          expect(user.reload.name).not_to eq('Richard')
+        end
+
+        it 'sets flash[:errors]' do
+          expect(flash[:errors]).to eq(['Invalid current password!'])
+        end
+      end
+
+      it 'redirects to the edit user page' do
+        put :update, id: user.id, user: attributes_for(:user)
+        expect(response).to redirect_to("/users/#{user.id}/edit")
       end
     end
 
